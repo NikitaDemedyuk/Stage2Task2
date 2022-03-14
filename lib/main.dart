@@ -33,7 +33,7 @@ int main() {
   try {
     stdout.write("\nEnter the index: ");
     int numberKey = int.parse(stdin.readLineSync() ?? '0');
-    if (numberKey > 100) {
+    if (numberKey > 100 || numberKey < 1) {
       throw (KeyNumberException);
     }
     stdout.write("\nKey: $numberKey, Value: ${mapFizzBizz[numberKey]}");

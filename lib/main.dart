@@ -1,6 +1,9 @@
 import 'dart:io';
 
-class KeyNumberException {
+class KeyNumberException implements Exception {
+  String getErrorMessage() {
+    return "\nIncorrect index\n";
+  }
 }
 
 Map setMap() {
@@ -34,11 +37,11 @@ int main() {
     stdout.write("\nEnter the index: ");
     int numberKey = int.parse(stdin.readLineSync() ?? '0');
     if (numberKey > 100 || numberKey < 1) {
-      throw (KeyNumberException);
+      throw KeyNumberException();
     }
     stdout.write("\nKey: $numberKey, Value: ${mapFizzBizz[numberKey]}");
-  } catch (KeyNumberException) {
-      stdout.write('\nIncorrect index\n');
+  } on KeyNumberException catch(e) {
+      stdout.write(e.getErrorMessage());
       return 0;
   }
   return 0;
